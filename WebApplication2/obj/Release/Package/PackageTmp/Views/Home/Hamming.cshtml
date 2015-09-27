@@ -1,0 +1,197 @@
+﻿@{
+	ViewBag.Title = "Hamming Code Generator";
+	ViewBag.description = "A Hamming code is a tool used for error correction on binary bits of data. It encodes parity bits into existing binary input to show where, if anywhere, a single-bit error occurred.";
+}
+
+<h2 style="text-align: center;">@ViewBag.Title</h2>
+<p style="text-align: center;">@ViewBag.description</p>
+@using (Html.BeginForm("Hamming", "Home", FormMethod.Post, new { @class = "form-inline", @style = "text-align: center" }))
+{
+
+	@Html.TextBox("inputBits", null, new { @class = "form-control", @placeholder = "Enter a binary string" });
+																											<input type="submit" class="btn btn-primary" value="Generate" />
+}
+
+<h4 style="text-align: center">@ViewBag.str</h4>
+<p style="text-align: center;">The general algorithm is as follows:</p>
+<div class="row" style="outline: 1px solid black" >
+	<ul>
+		<br />
+		<li style="font-weight: normal; list-style-position: inside; text-align: center;">
+			<b>Calculate the length of the hamming code</b><br />
+			Accumulate the number of parity bits needed by adding 1 until the number of parity bits plus the length of input is greater than 2 raised to the number of parity bits<br />
+			<table class="table table-striped table-bordered" style="width: 25%; text-align:center;" align="center">
+				<tr>
+					<th style="text-align: center;">
+						length of input
+					</th>
+					<th style="text-align: center;">
+						parity bits needed
+					</th>
+				</tr>
+				<tr>
+					<td>
+						1
+					</td>
+					<td>
+						3
+					</td>
+				</tr>
+				<tr>
+					<td>
+						2
+					</td>
+					<td>
+						3
+					</td>
+				</tr>
+				<tr>
+					<td>
+						3
+					</td>
+					<td>
+						3
+					</td>
+				</tr>
+				<tr>
+					<td>
+						4
+					</td>
+					<td>
+						4
+					</td>
+				</tr>
+				<tr>
+					<td>
+						5
+					</td>
+					<td>
+						4
+					</td>
+				</tr>
+				<tr>
+					<td>
+						6
+					</td>
+					<td>
+						4
+					</td>
+				</tr>
+				<tr>
+					<td>
+						7
+					</td>
+					<td>
+						4
+					</td>
+				</tr>
+				<tr>
+					<td>
+						8
+					</td>
+					<td>
+						4
+					</td>
+				</tr>
+			</table>
+		</li>
+		<li style="font-weight: normal; list-style-position: inside; text-align: center;">
+			<b>Insert the parity bits into the correct position</b><br />
+			Parity bits only go into positions that are a power of two. In other words, the 1st, 2nd, 4th, 8th, 16th, etc... positions.<br />
+			<table class="table table-striped table-bordered" style="width: 25%; text-align:center;" align="center">
+				<tr>
+					<th style="text-align: center;">
+						input
+					</th>
+					<th style="text-align: center;">
+						location of parity bits
+					</th>
+				</tr>
+				<tr>
+					<td>
+						11010011
+					</td>
+					<td>
+						xx1x101x0011
+					</td>
+				</tr>
+			</table>
+		</li>
+		<li style="font-weight: normal; list-style-position: inside; text-align: center;">
+			<b>Caclulate the correct values for the parity bits</b><br />
+			The bits that alter a parity bit are determined by the position of the parity bit. If it's in the 1st position, then it will start with the first bit and add 1 bit, skip 1 bit, etc... If it's in position 2, then it will start with the second bit and add 2 bits, skip 2 bits, etc... Position 4 starts with the fourth bit and adds 4, skips 4, etc... and so on and so forth.<br />
+			<table class="table table-striped table-bordered" style="width: 75%; text-align:center;" align="center">
+				<tr>
+					<th style="text-align: center;">
+						uncalculated hamming code
+					</th>
+					<th style="text-align: center;">
+						bits to add together
+					</th>
+					<th style="text-align: center">
+						result
+					</th>
+					<th style="text-align: center">
+						hamming code with added bit
+					</th>
+				</tr>
+				<tr>
+					<td>
+						<mark>x</mark>x1x101x0011
+					</td>
+					<td>
+						<mark>x</mark>x<mark>1</mark>x<mark>1</mark>0<mark>1</mark>x<mark>0</mark>0<mark>1</mark>1
+					</td>
+					<td>
+						0
+					</td>
+					<td>
+						<mark>0</mark>x1x101x0011
+					</td>
+				</tr>
+				<tr>
+					<td>
+						0<mark>x</mark>1x101x0011
+					</td>
+					<td>
+						0<mark>x1</mark>x1<mark>01</mark>x0<mark>01</mark>1
+					</td>
+					<td>
+						1
+					</td>
+					<td>
+						0<mark>1</mark>1x101x0011
+					</td>
+				</tr>
+				<tr>
+					<td>
+						011<mark>x</mark>101x0011
+					</td>
+					<td>
+						011<mark>x101</mark>x001<mark>1</mark>
+					</td>
+					<td>
+						1
+					</td>
+					<td>
+						011<mark>1</mark>101x0011
+					</td>
+				</tr>
+				<tr>
+					<td>
+						0111101<mark>x</mark>0011
+					</td>
+					<td>
+						0111101<mark>x0011</mark>
+					</td>
+					<td>
+						0
+					</td>
+					<td>
+						0111101<mark>0</mark>0011
+					</td>
+				</tr>
+			</table>
+		</li>
+</ul>
+</div>
