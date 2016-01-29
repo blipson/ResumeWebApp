@@ -118,3 +118,43 @@ C:\Users\Ben\Documents\Visual Studio 2015\Projects\ResumeApp\WebApplication2\bin
 C:\Users\Ben\Documents\Visual Studio 2015\Projects\ResumeApp\WebApplication2\obj\Debug\ResumeSite.csprojResolveAssemblyReference.cache
 C:\Users\Ben\Documents\Visual Studio 2015\Projects\ResumeApp\WebApplication2\obj\Debug\ResumeApp.dll
 C:\Users\Ben\Documents\Visual Studio 2015\Projects\ResumeApp\WebApplication2\obj\Debug\ResumeApp.pdb
+L:\Dev\ResumeWebApp\ResumeSite\bin\roslyn\csc.exe
+L:\Dev\ResumeWebApp\ResumeSite\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\roslyn\Microsoft.CodeAnalysis.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\roslyn\Microsoft.CSharp.Core.targets
+L:\Dev\ResumeWebApp\ResumeSite\bin\roslyn\Microsoft.VisualBasic.Core.targets
+L:\Dev\ResumeWebApp\ResumeSite\bin\roslyn\System.Collections.Immutable.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\roslyn\System.Reflection.Metadata.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\roslyn\vbc.exe
+L:\Dev\ResumeWebApp\ResumeSite\bin\roslyn\VBCSCompiler.exe
+L:\Dev\ResumeWebApp\ResumeSite\bin\roslyn\VBCSCompiler.exe.config
+L:\Dev\ResumeWebApp\ResumeSite\bin\Antlr3.Runtime.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\Microsoft.Web.Infrastructure.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\Newtonsoft.Json.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\System.Web.Helpers.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\System.Web.Mvc.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\System.Web.Optimization.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\System.Web.Razor.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\System.Web.WebPages.Deployment.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\System.Web.WebPages.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\System.Web.WebPages.Razor.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\WebGrease.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+L:\Dev\ResumeWebApp\ResumeSite\bin\System.Web.Helpers.xml
+L:\Dev\ResumeWebApp\ResumeSite\bin\System.Web.Mvc.xml
+L:\Dev\ResumeWebApp\ResumeSite\bin\System.Web.Optimization.xml
+L:\Dev\ResumeWebApp\ResumeSite\bin\System.Web.Razor.xml
+L:\Dev\ResumeWebApp\ResumeSite\bin\System.Web.WebPages.xml
+L:\Dev\ResumeWebApp\ResumeSite\bin\System.Web.WebPages.Deployment.xml
+L:\Dev\ResumeWebApp\ResumeSite\bin\System.Web.WebPages.Razor.xml
+L:\Dev\ResumeWebApp\ResumeSite\bin\Antlr3.Runtime.pdb
+L:\Dev\ResumeWebApp\ResumeSite\bin\Newtonsoft.Json.xml
+L:\Dev\ResumeWebApp\ResumeSite\obj\Debug\ResumeSite.csprojResolveAssemblyReference.cache
+L:\Dev\ResumeWebApp\ResumeSite\bin\ResumeSite.dll.config
+L:\Dev\ResumeWebApp\ResumeSite\bin\ResumeSite.dll
+L:\Dev\ResumeWebApp\ResumeSite\bin\ResumeSite.pdb
+L:\Dev\ResumeWebApp\ResumeSite\obj\Debug\ResumeSite.dll
+L:\Dev\ResumeWebApp\ResumeSite\obj\Debug\ResumeSite.pdb

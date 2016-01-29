@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Text.RegularExpressions;
 using System;
-using ResumeApp.RegularExpressions;
 
 namespace WebApplication2.Controllers
 {
@@ -111,35 +110,9 @@ namespace WebApplication2.Controllers
 			}
 			return View();
 		}
-
-		public ActionResult Regexp(string regexp)
+		public ActionResult MusicVis()
 		{
-			ViewBag.description = "This page checks to see if a string is a valid regular expression.";
-
-			if (IsRegexPatternValid(regexp))
-			{
-				RegExParser rep = new RegExParser(regexp);
-				rep.parse();
-				ViewBag.str = "Yes, " + regexp + " is a valid regular expression, " + rep.input;
-			}
-			else
-			{
-				ViewBag.str = "That isn't a valid regular expression. Backslashes break it.";
-			}
 			return View();
-		}
-
-		public static bool IsRegexPatternValid(string pattern)
-		{
-			try
-			{
-				pattern = @"\" + pattern;
-				RegexOptions options = RegexOptions.IgnoreCase | RegexOptions.Compiled;
-				new Regex(pattern, options);
-				return true;
-			}
-			catch { }
-			return false;
 		}
 	}
 }
