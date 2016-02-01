@@ -133,6 +133,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\ben.jpg" />
+    <Content Include="mp3\KokirikoBushi.mp3" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Images\LipsonResume.pdf" />
