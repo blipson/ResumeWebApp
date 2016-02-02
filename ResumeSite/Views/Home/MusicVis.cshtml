@@ -3,105 +3,100 @@
 	<script type="text/javascript" src="../../Scripts/webgl-utils.js"></script>
 
 	<script type="text/javascript">
-		var audioContext;
-		var bufferLoader;
-		var soundBuffer;
-		var analyser;
-		var bufferLength;
-		var dataArray;
+		
+		var audioContext,
+			sourceNode,
+			javascriptNode,
+			analyser;
 
-		var canvas2d;
-		var canvas2dContext;
-		var drawVisual;
+		var canvasContext2d,
+			gradient;
+
+		
 
 		function init() {
-			setUpCanvasContext();
+			setUp2dCanvasContext();
 			setUpAudioContext();
+			setUpAudioNodes();
 			loadSound('../../mp3/KokirikoBushi.mp3');
 		}
 
-		function setUpCanvasContext() {
-			canvas2d = document.getElementById('musicVisCanvas2d');
-			canvas2dContext = canvas2d.getContext('2d');
-			canvas2dContext.clearRect(0, 0, canvas2d.width, canvas2d.height);
+		function setUp2dCanvasContext() {
+			canvasContext2d = document.getElementById('musicVisCanvas2d').getContext('2d');
+			gradient = canvasContext2d.createLinearGradient(0, 0, 0, 300);
+			gradient.addColorStop(1, '#000000');
+			gradient.addColorStop(0.75, '#ff0000');
+			gradient.addColorStop(0.25, '#ffff00');
+			gradient.addColorStop(0, '#ffffff');
 		}
 
 		function setUpAudioContext() {
 			try {
 				window.AudioContext = window.AudioContext || window.webkitAudioContext;
-				audioContext = new AudioContext();
-				analyser = audioContext.createAnalyser();
+				audioContext = new (window.AudioContext || window.webkitAudioContext)();
 			}
 			catch (e) {
 				alert('Web Audio API is not supported in this browser');
 			}
 		}
 
-		function loadSound(audioFile) {
+		function setUpAudioNodes() {
+			javascriptNode = audioContext.createScriptProcessor(2048, 1, 1);
+			javascriptNode.connect(audioContext.destination);
+
+			analyser = audioContext.createAnalyser();
+			analyser.smoothingTimeConstant = 0.3;
+			analyser.fftSize = 512;
+
+			sourceNode = audioContext.createBufferSource();
+			sourceNode.connect(analyser);
+			sourceNode.connect(javascriptNode);
+			sourceNode.connect(audioContext.destination);
+		}
+
+		function loadSound(url) {
 			var request = new XMLHttpRequest();
-			request.open('GET', audioFile, true);
+			request.open('GET', url, true);
 			request.responseType = 'arraybuffer';
+
 			request.onload = function () {
 				audioContext.decodeAudioData(request.response, function (buffer) {
-					soundBuffer = buffer;
-					playSound(soundBuffer);
-					
-					
-					analyser.fftSize = 2048;
-					bufferLength = analyser.frequencyBinCount;
-					dataArray = new Uint8Array(bufferLength);
-					console.log(analyser);
-					draw2d();
-				});
+					playSound(buffer);
+					draw();
+				}, onError);
 			}
 			request.send();
 		}
 
 		function playSound(buffer) {
-			var source = audioContext.createBufferSource();
-			source.buffer = buffer;
-			source.connect(audioContext.destination);
-			source.start(0);
+			sourceNode.buffer = buffer;
+			sourceNode.start(0);
 		}
 
-		function draw2d() {
-			drawVisual = requestAnimationFrame(draw2d);
-			analyser.getByteTimeDomainData(dataArray);
-			console.log(analyser.getByteTimeDomainData(dataArray));
+		function draw() {
+			var array = new Uint8Array(analyser.frequencyBinCount);
+			analyser.getByteFrequencyData(array);
+
+			canvasContext2d.clearRect(0, 0, 1000, 325);
+
+			canvasContext2d.fillStyle = gradient;
+			drawSpectrum(array);
+			window.requestAnimationFrame(draw);
 		}
+
+		function drawSpectrum(array) {
+			for (var i = 0; i < (array.length) ; i++) {
+				var value = array[i];
+				canvasContext2d.fillRect(i * 5, 325 - value, 3, 325);
+			}
+		}
+
+		function onError(e) {
+			console.log(e);
+		}
+
 	</script>
-
-<!--	<script type="text/javascript">
-		var gl;
-
-		function start() {
-			var canvas = document.getElementById("musicVisCanvas");
-			gl = initWebGL(canvas);
-			if (gl) {
-				gl.clearColor(0.0, 0.0, 0.0, 1.0);
-				gl.enable(gl.DEPTH_TEST);
-				gl.depthFunc(gl.LEQUAL);
-				gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-			}
-		}
-
-		function initWebGL(canvas) {
-			gl = null;
-			try {
-				gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-			}
-			catch (e) { }
-			if (!gl) {
-				alert("Unable to initialize WebGL. Your browser may not support it.");
-				gl = null;
-			}
-			return gl;
-		}
-	</script>-->
 </head>
-<!--<body onload="start();">
-	<canvas id="musicVisCanvas3d" style="border: none; width: 100%; height: 100%"></canvas>
-</body>-->
 <body onload="init()">
 	<canvas id="musicVisCanvas2d" width="500" height="500"></canvas>
 </body>
